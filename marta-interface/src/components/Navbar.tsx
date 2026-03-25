@@ -1,38 +1,48 @@
-import type { LineColor } from '../types/marta'
-
 interface NavbarProps {
-  color: LineColor
   stations: string[]
   loading: boolean
   selectedStation: string | null
-  onStationClick: (station: string) => void
+  /** null = “All Stations” */
+  onSelectStation: (station: string | null) => void
 }
 
-export default function Navbar({ color, stations, loading, selectedStation, onStationClick }: NavbarProps) {
+export default function Navbar({ stations, loading, selectedStation, onSelectStation }: NavbarProps) {
+  const allActive = selectedStation === null
+
   return (
-    <nav style={{ marginTop: '10px', marginBottom: '12px' }}>
-      <h2 style={{ textTransform: 'capitalize' }}>{color} Line Stations</h2>
+    <aside className="lines-sidebar" aria-label="Starting station">
+      <p className="lines-sidebar__hint">Select your starting station</p>
       {loading ? (
-        <p>Loading stations...</p>
+        <p className="lines-sidebar__loading">Loading stations…</p>
       ) : stations.length === 0 ? (
-        <p>No stations available.</p>
+        <p className="lines-sidebar__empty">No stations available.</p>
       ) : (
-        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-          {stations.map((station) => (
+        <ul className="lines-sidebar__list">
+          <li className="lines-sidebar__item">
             <button
-              key={station}
               type="button"
-              onClick={() => onStationClick(station)}
-              style={{
-                backgroundColor: selectedStation === station ? '#dbeafe' : 'white',
-                border: '1px solid #9ca3af',
-              }}
+              className={`lines-sidebar__btn ${allActive ? 'lines-sidebar__btn--active' : ''}`}
+              onClick={() => onSelectStation(null)}
             >
-              {station}
+              All Stations
             </button>
-          ))}
-        </div>
+          </li>
+          {stations.map((station) => {
+            const active = selectedStation !== null && selectedStation === station
+            return (
+              <li key={station} className="lines-sidebar__item">
+                <button
+                  type="button"
+                  className={`lines-sidebar__btn ${active ? 'lines-sidebar__btn--active' : ''}`}
+                  onClick={() => onSelectStation(station)}
+                >
+                  {station}
+                </button>
+              </li>
+            )
+          })}
+        </ul>
       )}
-    </nav>
+    </aside>
   )
 }

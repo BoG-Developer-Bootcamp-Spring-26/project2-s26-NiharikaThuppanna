@@ -1,0 +1,106 @@
+.train-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid #111;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+.train-row__logo {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 0;
+  border: 2px solid #000;
+  background: #fff;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.train-row__mid {
+  flex: 1;
+  min-width: 0;
+}
+
+.train-row__route {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 6px;
+  line-height: 1.35;
+}
+
+.train-row__meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.train-row__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: max-content;
+  padding: 4px 10px;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  border: 2px solid #000;
+  border-radius: 0;
+  color: #fff;
+  box-sizing: border-box;
+  color-scheme: light;
+  forced-color-adjust: none;
+}
+
+.train-row__badge--gold {
+  background: #f7c600;
+  color: #fff;
+}
+
+.train-row__badge--red {
+  background: #c8102e;
+  color: #fff;
+}
+
+.train-row__badge--blue {
+  background: #005eb8;
+  color: #fff;
+}
+
+.train-row__badge--green {
+  background: #00a950;
+  color: #fff;
+}
+
+.train-row__status {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.train-row__status--delayed {
+  color: #dc2626;
+}
+
+.train-row__status--ontime {
+  color: #15803d;
+}
+
+.train-row__eta {
+  flex-shrink: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #16a34a;
+  min-width: 4.5rem;
+  text-align: right;
+}

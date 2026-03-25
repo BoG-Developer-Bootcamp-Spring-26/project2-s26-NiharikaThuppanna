@@ -3,6 +3,10 @@ import Home from './pages/Home'
 import About from './pages/About'
 import LinesPage from './pages/LinesPage'
 
+/**
+ * Routes satisfy the README “NEW” flow: Home (with four line links + About), About, and LinesPage per line.
+ * LinesPage remains the main interactive screen for trains/stations/filters.
+ */
 function App() {
   return (
     <Routes>

@@ -10,21 +10,18 @@ interface TrainListProps {
 
 export default function TrainList({ color, trains, loading, emptyMessage }: TrainListProps) {
   if (loading) {
-    return <section>Loading trains...</section>
+    return <div className="lines-main__list-loading">Loading trains…</div>
+  }
+
+  if (trains.length === 0) {
+    return <p className="lines-main__list-empty">{emptyMessage ?? 'No trains available right now.'}</p>
   }
 
   return (
-    <section>
-      <h2 style={{ textTransform: 'capitalize' }}>{color} Line Trains</h2>
-      {trains.length === 0 ? (
-        <p>{emptyMessage ?? 'No trains available right now.'}</p>
-      ) : (
-        <div style={{ display: 'grid', gap: '10px' }}>
-          {trains.map((train, index) => (
-            <Train key={`${train.TRAIN_ID ?? 'train'}-${index}`} train={train} />
-          ))}
-        </div>
-      )}
-    </section>
+    <div className="lines-main__list">
+      {trains.map((train, index) => (
+        <Train key={`${train.TRAIN_ID ?? 'train'}-${index}`} train={train} lineColor={color} />
+      ))}
+    </div>
   )
 }
