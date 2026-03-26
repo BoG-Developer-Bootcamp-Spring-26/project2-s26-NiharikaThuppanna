@@ -74,7 +74,6 @@ h2 {
   color: var(--text-h);
 }
 
-/* Default h1 — app pages override with scoped classes (e.g. .home-page__logo) */
 h1 {
   font-size: 56px;
   letter-spacing: -1.68px;

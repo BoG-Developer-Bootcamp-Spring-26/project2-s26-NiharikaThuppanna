@@ -36,7 +36,6 @@ function getDirectionLabels(line: LineColor): [string, string] {
   return ['Northbound', 'Southbound']
 }
 
-/** API may return a bare array or { data: [...] } / { stations: [...] }. */
 function unwrapArray(json: unknown): unknown[] {
   if (Array.isArray(json)) {
     return json
@@ -72,14 +71,12 @@ function trainRecord(train: TrainArrival): Record<string, unknown> {
   return train as unknown as Record<string, unknown>
 }
 
-/** API may use STATION, station, etc. */
 function getTrainStation(train: TrainArrival): string {
   const r = trainRecord(train)
   const v = r.STATION ?? r.station ?? r.Station
   return typeof v === 'string' ? v : ''
 }
 
-/** API may use DIRECTION, direction, etc. */
 function getTrainDirection(train: TrainArrival): string {
   const r = trainRecord(train)
   const v = r.DIRECTION ?? r.direction ?? r.Direction
@@ -102,10 +99,6 @@ function normalizeStationKey(value: string): string {
     .replace(/\s+/g, ' ')
 }
 
-/**
- * "Arriving" ≈ imminent / at platform soon; "Scheduled" ≈ further out.
- * API shapes vary; be lenient so toggles don't empty the list incorrectly.
- */
 function isArriving(train: TrainArrival): boolean {
   const r = trainRecord(train)
   const arrivingRaw = r.ARRIVING ?? r.arriving ?? r.Arriving
@@ -297,7 +290,6 @@ export default function LinesPage() {
         return true
       }
       const d = getTrainDirection(train).trim()
-      // If API omits direction, don't filter every train out
       if (!d) {
         return true
       }

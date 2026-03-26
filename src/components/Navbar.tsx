@@ -2,7 +2,6 @@ interface NavbarProps {
   stations: string[]
   loading: boolean
   selectedStation: string | null
-  /** null = “All Stations” */
   onSelectStation: (station: string | null) => void
 }
 
