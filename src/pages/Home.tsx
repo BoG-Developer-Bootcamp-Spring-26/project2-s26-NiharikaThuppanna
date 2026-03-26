@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import homeHero from '../assets/home-hero.png'
 import './Home.css'
 
 export default function Home() {
@@ -42,7 +43,7 @@ export default function Home() {
         <div className="home-page__hero">
           <img
             className="home-page__hero-img"
-            src="/home-hero.png"
+            src={homeHero}
             alt="MARTA train on elevated track"
           />
         </div>

@@ -142,3 +142,40 @@ These are just example designs for this project! You can follow these designs as
 ### HOME
 
 <img src="https://github.com/BoG-Dev-Bootcamp-F25/project1-f25/blob/main/assets/home_page.png" alt="Example of Home Page" width="500"></img>
+
+---
+
+## Implementation (this fork)
+
+The Vite + React app lives at the **repository root** (`package.json`, `src/`, `public/`, `vite.config.ts`). From the clone root:
+
+```bash
+npm install
+npm run dev
+```
+
+Open the URL Vite prints (usually `http://localhost:5173`).
+
+**API:** The app calls `/arrivals/{line}` and `/stations/{line}` as relative URLs. In dev and `npm run preview`, those paths are proxied to `https://midsem-bootcamp-api.onrender.com` (see `vite.config.ts`) to avoid CORS. If the API returns 503, wait and refresh.
+
+```bash
+npm run build    # production bundle → dist/
+npm run preview  # serve dist/ with the same API proxy
+npm run lint
+```
+
+### Routes
+
+| Path | Page |
+|------|------|
+| `/` | Home — links to each line + About |
+| `/about` | About MARTA + system map |
+| `/lines/gold` (and `red`, `green`, `blue`) | Lines UI: stations, filters, train list |
+
+### Source layout
+
+- `src/pages/LinesPage.tsx` — line tabs, data fetch, filters, station selection
+- `src/components/Navbar.tsx`, `Train.tsx`, `TrainList.tsx`
+- `src/types/marta.ts` — shared types
+- `src/pages/Home.css`, `LinesPage.css`, `src/components/Train.css` — page/component styles
+- `src/assets/` — bundled images (e.g. Home hero); `public/` only holds static files copied as-is (`favicon.svg`, `icons.svg`)
